@@ -4,23 +4,48 @@ angular.module('2048', [])
 
   Game.start();
   $scope.tiles = Game.tiles;
+  Game.move('up');
 }])
 
-.constant('Slots', [{x: 1, y: 1}, {x: 2, y: 1}, {x: 3, y: 1}, {x: 4, y: 1},
-  {x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2},
-  {x: 1, y: 3}, {x: 2, y: 3}, {x: 3, y: 3}, {x: 4, y: 3},
-  {x: 1, y: 4}, {x: 2, y: 4}, {x: 3, y: 4}, {x: 4, y: 4}])
+.constant('Slots', [[{},{},{},{}],[{},{},{},{}],[{},{},{},{}],[{},{},{},{}]])
 
-.service('Game', ['Tile', function Game(Tile) {
+.service('Game', ['Tile', '$filter', function Game(Tile, $filter) {
 
   Game.prototype.start = function () {
     this.tiles = [new Tile(2), new Tile(2)];
-  }
+  };
 
   Game.prototype.removeTile = function (tile) {
     this.tiles.splice(this.tiles.indexOf(tile), 1);
     tile.remove();
-  }
+  };
+
+  Game.prototype.move = function (direction) {
+    var x = 0; y = 0;
+    if (direction === 'left') {
+      x = -1;
+      this.tiles = $filter('orderBy')(this.tiles, 'x');
+    } else if (direction === 'right') {
+      x = 1;
+      this.tiles = $filter('orderBy')(this.tiles, 'x', true);
+    } else if (direction === 'up') {
+      y = -1;
+      this.tiles = $filter('orderBy')(this.tiles, 'y');
+    } else if (direction === 'down') {
+      y = 1;
+      this.tiles = $filter('orderBy')(this.tiles, 'y', true);
+    } else {
+      throw new Error("Invalid direction");
+    }
+
+    this.moveTiles(x, y);
+  };
+
+  Game.prototype.moveTiles = function (x, y) {
+    angular.forEach(this.tiles, function (tile) {
+
+    })
+  };
 
 }])
 
@@ -38,11 +63,11 @@ angular.module('2048', [])
 
   Tile.prototype.remove = function () {
     Slots.push(this.slot);
-  }
+  };
 
   function randSlot() {
     return Slots[Math.floor(Math.random() * Slots.length)];
   }
 
   return Tile;
-}])
+}]);
