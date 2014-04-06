@@ -1,9 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="2048">
   <head>
     <title>2048</title>
+    <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" title="main styles" charset="utf-8">
   </head>
   <body>
+    <h1 class="text-center">2048</h1>
+    <div class="container">
+      <div class="game-board center" ng-controller="GameCtrl">
+        <div class="slots">
+          <div class="slot-row">
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+          </div>
+          <div class="slot-row">
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+          </div>
+          <div class="slot-row">
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+          </div>
+          <div class="slot-row">
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+          </div>
+        </div>
+        <div class="tiles">
+          <div class="tile tile-{{tile.value}} tile-position-{{tile.x}}-{{tile.y}}" ng-repeat="tile in tiles">
+            {{tile.value}}
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <script src="http://code.angularjs.org/1.2.15/angular.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>

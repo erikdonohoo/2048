@@ -1,0 +1,81 @@
+html, body {
+  margin:0;
+  padding:0;
+}
+ * {
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+ }
+.center {
+  margin:0 auto;
+}
+.text-center {
+  text-align:center;
+}
+.game-board {
+  height:540px;
+  width:540px;
+  background-color:rgba(0,0,0,0.4);
+  border-radius:8px;
+}
+.slots, .tiles {
+  position:absolute;
+  padding:20px;
+}
+.slots {
+  z-index:1;
+}
+.slot-row {
+  height:110px;
+  width:100%;
+}
+.slot-row + .slot-row {
+  margin-top:20px;
+}
+.slot {
+  height:inherit;
+  width:110px;
+  background-color:#C2C1C1;
+  border-radius:4px;
+  display:inline-block;
+  box-shadow:0 1px 3px rgba(0,0,0,0.2);
+}
+.slot + .slot {
+  margin-left:16px;
+}
+
+/* Tiles */
+.tile {
+  z-index:2;
+  width:110px;
+  height:110px;
+  position:absolute;
+  border-radius:4px;
+  background-color:lightblue;
+  transition:all 0.5s linear;
+}
+[class*=tile-position-1-] {
+  left:20px;
+}
+.tile-position-1-1, .tile-position-2-1, .tile-position-3-1, .tile-position-4-1 {
+  top:20px;
+}
+[class*=tile-position-2-] {
+  left:150px;
+}
+.tile-position-1-2, .tile-position-2-2, .tile-position-3-2, .tile-position-4-2 {
+  top:150px;
+}
+[class*=tile-position-3-] {
+  left:280px;
+}
+.tile-position-1-3, .tile-position-2-3, .tile-position-3-3, .tile-position-4-3 {
+  top:280px;
+}
+[class*=tile-position-4-] {
+  left:410px;
+}
+.tile-position-1-4, .tile-position-2-4, .tile-position-3-4, .tile-position-4-4 {
+  top:410px;
+}
